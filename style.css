@@ -1,0 +1,588 @@
+/* --- style.css --- */
+
+/* --- VARIAVEIS E RESET --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --cor-fundo: #f8f8f8;
+    --cor-texto-escuro: #333;
+    --cor-borda-clara: rgba(0, 0, 0, 0.1);
+    --cor-sombra-flutuante: 0 8px 30px rgba(0, 0, 0, 0.1); 
+    --cor-azul-claro: #a8dadc;
+    --cor-roxo-suave: #83a5bd;
+    --cor-borda-card: #f0f0f0; 
+    --cor-brilho: rgba(131, 165, 189, 0.6); /* Nova variável para o brilho */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent; /* --- ALTERADO --- (Para deixar o overlay de fundo aparecer) */
+    color: var(--cor-texto-escuro);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+}
+
+/* Fundo transparente com imagem */
+.background-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://wallpapers.com/images/featured/anime-park-background-fa8dsnxd4ng1p186.jpg') center center/cover no-repeat;
+    opacity: 0.5; /* Transparência de 50% */
+    z-index: -1; /* Fica abaixo de todo o conteúdo */
+}
+
+
+/* --- ELEMENTOS FLUTUANTES GERAIS (Cards) --- */
+.info-card, .profile-card, .projects-gallery-box, .mobile-player-sim, .profile-mini-img-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: var(--cor-sombra-flutuante);
+    border: 1px solid var(--cor-borda-card);
+    position: absolute; 
+    z-index: 20;
+    padding: 20px;
+    transition: box-shadow 0.3s ease; 
+}
+.profile-card, .profile-mini-img-card {
+    position: relative; 
+    margin: 0 0 15px 0;
+}
+
+
+/* --- BARRA DE NAVEGAÇÃO HORIZONTAL (TOPO) --- */
+.top-nav {
+    display: flex; 
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 0;
+    background-color: transparent; /* --- ALTERADO --- (Para deixar o overlay de fundo aparecer) */
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--cor-borda-clara);
+}
+.top-nav a {
+    color: var(--cor-texto-escuro);
+    text-decoration: none;
+    padding: 5px;
+    transition: color 0.3s;
+}
+.top-nav a:hover {
+    color: var(--cor-roxo-suave);
+}
+
+
+/* --- BARRA DE NAVEGAÇÃO LATERAL (ÍCONES) --- */
+.side-nav-container {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    z-index: 30;
+}
+
+.side-nav {
+    background-color: white;
+    padding: 10px 5px;
+    border-radius: 15px;
+    box-shadow: var(--cor-sombra-flutuante);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-icon {
+    font-size: 1.1em;
+    color: var(--cor-texto-escuro);
+    transition: color 0.3s ease;
+    padding: 5px;
+}
+
+.nav-icon:hover {
+    color: var(--cor-roxo-suave);
+}
+
+/* --- MAIN CONTENT / LAYOUT CONTAINER --- */
+.main-content-layout {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Ajustei o padding para dar espaço lateral suficiente para os balões */
+    padding: 50px 40px 100px 40px; 
+}
+
+.content-wrapper {
+    position: relative;
+    width: 100%;
+    /* Aumentado o max-width para acomodar a imagem grande E os balões laterais */
+    max-width: 1500px; /* *** MODIFICADO *** */ 
+    min-height: 700px; 
+    max-height: 800px;
+}
+
+/* --- IMAGEM CENTRAL DE DESTAQUE (MOLDURA) --- */
+.main-image-container {
+    width: 95%; /* *** VOLTOU AO ORIGINAL *** */ 
+    max-width: 900px; /* Adicionado um max-width para controle */
+    height: 600px; 
+    
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 20px;
+    box-shadow: var(--cor-sombra-flutuante);
+    z-index: 10;
+    overflow: hidden; 
+}
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ajusta a imagem para caber na moldura sem cortar */
+    display: block; 
+}
+
+.floating-name {
+    position: absolute;
+    bottom: 30%; 
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 7em;
+    color: rgba(255, 255, 255, 0.85); 
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* --- CARD DE INFORMAÇÃO PRINCIPAL (Sobreposto) --- */
+/* --- ESTA SEÇÃO FOI MANTIDA EXATAMENTE COMO VOCÊ PEDIU --- */
+.info-card-main {
+    width: 40%; 
+    max-width: 3000px; 
+    bottom: 55%; 
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: left;
+    
+    border-radius: 10px; 
+    padding-bottom: 30px; 
+    z-index: 25; 
+
+    background-color: rgba(255, 255, 255, 0.7); 
+    backdrop-filter: blur(5px); 
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.info-card-main:hover {
+    background-color: rgba(255, 255, 255, 0.9); 
+    transform: translateX(-50%) translateY(-10px); 
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 0 20px var(--cor-brilho); 
+}
+/* --- FIM DA SEÇÃO MANTIDA --- */
+
+.info-card-main h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+.info-card-main p {
+    font-size: 1.0em;
+}
+
+/* --- CARD LATERAL ESQUERDO (GRUPO PERFIL) --- */
+.profile-group-container {
+    position: absolute;
+    top: 25%; 
+    /* Ajustado para posicionar à esquerda da main-image-container */
+    left: calc(50% - (900px / 2) - 240px); /* *** MODIFICADO *** */
+    /* 50% - (metade da largura da imagem) - (largura do card + margem) */
+    transform: translateX(0); 
+    z-index: 25;
+}
+
+.profile-text {
+    width: 220px; 
+    padding: 15px;
+    text-align: left;
+}
+
+.profile-text .signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+.profile-text p {
+    font-size: 0.8em;
+    line-height: 1.2;
+}
+
+/* Miniatura */
+.profile-mini-img-card {
+    width: 220px; 
+    height: 120px; 
+    padding: 10px;
+    overflow: hidden;
+}
+
+.profile-mini-img-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.profile-mini-img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    display: block;
+}
+
+
+/* --- PROJETOS/GALERIA BOX --- */
+.projects-gallery-box {
+    top: 50px; 
+    /* Ajustado para posicionar à direita da main-image-container */
+    right: calc(50% - (900px / 2) - 240px); /* *** MODIFICADO *** */
+    /* 50% - (metade da largura da imagem) - (largura do card + margem) */
+    transform: translateX(0); 
+    width: 220px; 
+    padding: 15px;
+}
+
+.projects-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: var(--cor-roxo-suave);
+    font-weight: 500;
+}
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.grid-item {
+    height: 50px;
+    background-color: var(--cor-azul-claro);
+    border-radius: 5px;
+    opacity: 0.7;
+}
+
+.add-button {
+    background-color: var(--cor-azul-claro);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto; 
+    font-size: 0.9em;
+}
+
+/* --- SIMULAÇÃO DE MOBILE/PLAYER DE MÚSICA --- */
+.mobile-player-sim {
+    top: 70%; 
+    /* Ajustado para posicionar à direita e abaixo da main-image-container */
+    right: calc(50% - (900px / 2) - 240px); /* *** MODIFICADO *** */
+    /* 50% - (metade da largura da imagem) - (largura do card + margem) */
+    transform: translateX(0) translateY(-50%); 
+    width: 220px; 
+    height: 380px; 
+    padding: 0;
+    background-color: transparent; 
+    box-shadow: none;
+    border: none;
+}
+.mobile-player-sim.card-animado-4 {
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.6s ease;
+}
+.mobile-frame {
+    width: 100%;
+    height: 100%;
+    background-color: black; 
+    border-radius: 25px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2); 
+    padding: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease; 
+}
+
+.mobile-frame:hover { 
+    box-shadow: 0 0 50px var(--cor-brilho); 
+}
+
+.by-line {
+    font-size: 0.8em;
+    position: absolute;
+    top: -20px;
+    right: 0;
+}
+.screen-content {
+    background: url('https://a.storyblok.com/f/178900/750x519/3e36408a6a/a0aad0b1709b8e2808c8b34688d8472a1639560776_main.jpg/m/filters:quality(95)format(webp)') center center/cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+.time-widget {
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-top: 5px;
+    color: white; 
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    margin-left: 5px;
+}
+.music-player {
+    position: absolute;
+    bottom: 20px;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 10px;
+    border-radius: 15px;
+}
+.album-art {
+    width: 100%;
+    height: 100px;
+    background: url('https://i.pinimg.com/736x/3f/38/08/3f3808e8a0a3991fce0371d698b68c40.jpg') center center/cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.song-info {
+    display: none; 
+}
+.controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}
+.controls i {
+    font-size: 1.2em;
+    color: #333;
+    cursor: pointer;
+}
+.controls .large-play {
+    font-size: 2.5em;
+    color: #83a5bd;
+}
+
+
+/* --- FOOTER SOCIAL --- */
+.social-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 0;
+    margin-top: auto;
+    color: var(--cor-roxo-suave);
+    font-size: 1.5em;
+    position: relative;
+    z-index: 10;
+}
+
+.template-info {
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--cor-texto-escuro);
+}
+
+/* --- ANIMAÇÕES (Mantidas e Modificadas) --- */
+
+@keyframes glowSubtle {
+    0% {
+        box-shadow: var(--cor-sombra-flutuante);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(131, 165, 189, 0.4); 
+    }
+    100% {
+        box-shadow: var(--cor-sombra-flutuante);
+    }
+}
+
+.card-animado-2 {
+    animation: glowSubtle 3s infinite alternate ease-in-out;
+}
+
+@keyframes rotatePulse {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+.card-animado-3:hover {
+    animation: rotatePulse 0.5s ease-out forwards; 
+}
+
+.mobile-player-sim.card-animado-4 {
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.6s ease;
+}
+.mobile-player-sim.card-animado-4:hover {
+    transform: translateX(0) translateY(-50%); 
+    opacity: 1; 
+}
+
+
+/* --- MEDIA QUERIES (Responsividade) --- */
+
+/* MOBILE */
+@media (max-width: 767px) {
+    .side-nav-container {
+        display: none; 
+    }
+    
+    .main-image-container {
+        width: 100%; 
+        height: 50vh; 
+        max-width: none; /* Remove max-width no mobile */
+    }
+
+    .profile-card, .projects-gallery-box, .mobile-player-sim {
+        position: relative; 
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 20px auto;
+        width: 90%;
+        max-width: 400px;
+        height: auto; 
+    }
+    
+    .info-card-main {
+        position: relative;
+        bottom: 5%; 
+        margin: 20px auto;
+        transform: translateX(-50%);
+    }
+    .info-card-main:hover {
+        transform: translateX(-50%); 
+    }
+    
+    .floating-name {
+        font-size: 3em;
+    }
+
+    .profile-group-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+        width: 90%;
+        max-width: 400px;
+    }
+    .profile-card, .profile-mini-img-card {
+        position: relative;
+        width: 100%;
+        margin: 0 0 15px 0;
+    }
+}
+
+
+/* TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .main-image-container {
+        width: 90%; /* Mantido um tamanho maior para tablets */
+        height: 55vh;
+        max-width: 700px; /* Definido um max-width para tablets */
+    }
+
+    .profile-group-container {
+        top: 20%;
+        /* Ajustado para tablets */
+        left: calc(50% - (700px / 2) - 180px); /* *** MODIFICADO *** */
+        transform: translateX(0); 
+    }
+    .profile-text, .profile-mini-img-card {
+        width: 160px; 
+    }
+
+    .projects-gallery-box {
+        top: 50px;
+        /* Ajustado para tablets */
+        right: calc(50% - (700px / 2) - 180px); /* *** MODIFICADO *** */
+        transform: translateX(0); 
+        width: 160px; 
+    }
+    .mini-grid .grid-item {
+        height: 40px;
+    }
+
+    .mobile-player-sim {
+        top: 65%; 
+        /* Ajustado para tablets */
+        right: calc(50% - (700px / 2) - 180px); /* *** MODIFICADO *** */
+        transform: translateX(0) translateY(-50%); 
+        width: 160px;
+        height: 300px;
+    }
+}
+
+/* DESKTOP (A partir de 1024px) */
+@media (min-width: 1024px) {
+    
+    .main-image-container {
+        width: 95%; /* *** VOLTOU AO ORIGINAL *** */ 
+        height: 600px; 
+        max-width: 900px; /* *** NOVO: Definido um max-width para desktop *** */
+    }
+
+    .profile-group-container {
+        top: 25%;
+        /* Usando calc() para posicionar à esquerda da imagem central */
+        left: calc(50% - (900px / 2) - 240px); /* *** MODIFICADO *** */
+        /* 50% (centro da tela) - (metade da largura da imagem) - (largura do card + margem extra) */
+        transform: translateX(0); 
+    }
+
+    .projects-gallery-box {
+        top: 50px;
+        /* Usando calc() para posicionar à direita da imagem central */
+        right: calc(50% - (900px / 2) - 240px); /* *** MODIFICADO *** */
+        transform: translateX(0); 
+    }
+    
+    .mobile-player-sim {
+        top: 70%; 
+        /* Usando calc() para posicionar à direita e abaixo da imagem central */
+        right: calc(50% - (900px / 2) - 240px); /* *** MODIFICADO *** */
+        transform: translateX(0) translateY(-50%); 
+    }
+    
+    .side-nav-container {
+        left: 50px;
+    }
+}
